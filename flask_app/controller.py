@@ -2,6 +2,7 @@ from flask import flash, redirect, render_template, request, url_for , Blueprint
 from services.models import User
 from services.user_service import UserService
 from flask_login import login_user, login_required, current_user, logout_user
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 user_service = UserService()
@@ -21,7 +22,7 @@ def login():
 
     user_data = user_service.check_user(request.form)
     
-    if not user_data:
+    if not user_data or not check_password_hash(user_data['password'], password):
         flash('Por favor verifica tu email y contraseña, los datos ingresados son incorrectos')
         return redirect(url_for('auth_bp.login'))
     
@@ -49,7 +50,7 @@ def signup():
         flash('El email ya está registrado. Por favor, intente con otro o diríjase a la pagina de login', 'error')
         return redirect(url_for('auth_bp.signup'))
     else: 
-        user_service.insert_user(name, email, password)
+        user_service.insert_user(name, email, password=generate_password_hash(password, method='pbkdf2:sha256'))
         return redirect(url_for('auth_bp.login'))
 
 

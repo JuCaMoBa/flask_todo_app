@@ -21,7 +21,7 @@ class UserService:
         self.conn.commit()
 
     def check_user(self, credentials):
-        self.cur.execute('SELECT id, name, email, password FROM users_auth WHERE password = %(password)s and email = %(email)s', credentials)
+        self.cur.execute('SELECT id, name, email, password FROM users_auth WHERE email = %(email)s', credentials)
         return self.cur.fetchone()
     
     def check_email(self, email):
