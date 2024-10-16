@@ -1,12 +1,15 @@
 import os
 import psycopg2
 import psycopg2.extras
+from dotenv import load_dotenv
+
+load_dotenv()
 
 db_config = {
     'host': 'localhost',
     'database': 'flask_db',
-    'user': os.environ['DB_USER'],
-    'password': os.environ['DB_PASSWORD']
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
 }
 class get_db_connection():
     def __enter__(self):
@@ -19,7 +22,7 @@ class get_db_connection():
             self.conn.rollback()
         else:
             self.conn.commit()
-        
+                        
         self.cursor.close()
         self.conn.close()
 
