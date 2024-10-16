@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 db_config = {
-    'host': 'localhost',
-    'database': 'flask_db',
+    'host': os.getenv('DB_HOST'),
+    'database': os.getenv('DB_DATABASE'),
     'user': os.getenv('DB_USER'),
     'password': os.getenv('DB_PASSWORD'),
 }
