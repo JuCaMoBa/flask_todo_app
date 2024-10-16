@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from services.models import User
-from services import user_service
+from database.db_connection import get_db_connection
 
 
 app = Flask(__name__)
@@ -13,15 +13,12 @@ login_manager.login_view = 'login_bp.login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    conn = user_service.get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM users_auth WHERE id = %s", (user_id,))
-    user = cur.fetchone()
-    conn.close()
-
-    if user:
-        return User(id=user[0], name=user[1], email=user[2], password=user[3])
-    return None
+    with get_db_connection() as cursor:
+        cursor.execute("SELECT * FROM users_auth WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+        if user:
+            return User(id=user['id'], name=user['name'], email=user['email'], password=user['password'])
+        return None
 
 
 
