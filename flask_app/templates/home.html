@@ -19,24 +19,24 @@
 
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
-                            <a href="{{ url_for('auth_bp.home') }}" class="navbar-item">
+                            <a href="{{ url_for('home.home') }}" class="navbar-item">
                                 Home
                             </a>
-                            {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth_bp.profile') }}" class="navbar-item">
+                            {% if session['user'] %}
+                            <a href="{{ url_for('tasks.profile') }}" class="navbar-item">
                                 Profile
                             </a>
                             {% endif %}
-                            {% if not current_user.is_authenticated %}
-                            <a href="{{ url_for('auth_bp.login') }}" class="navbar-item">
+                            {% if not session['user']%}
+                            <a href="{{ url_for('auth.login') }}" class="navbar-item">
                                 Login
                             </a>
-                            <a href="{{ url_for('auth_bp.signup') }}" class="navbar-item">
+                            <a href="{{ url_for('auth.signup') }}" class="navbar-item">
                                 Sign Up
                             </a>
                             {% endif %}
-                            {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('auth_bp.logout') }}" class="navbar-item">
+                            {% if session['user'] %}
+                            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
                                 Logout
                             </a>
                             {% endif %}                        

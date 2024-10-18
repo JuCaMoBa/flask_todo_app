@@ -11,7 +11,7 @@ db_config = {
     'user': os.getenv('DB_USER'),
     'password': os.getenv('DB_PASSWORD'),
 }
-class get_db_connection():
+class DatabaseConnection():
     def __enter__(self):
         self.conn = psycopg2.connect(**db_config)
         self.cursor = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
