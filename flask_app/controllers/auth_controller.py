@@ -19,7 +19,7 @@ def login():
 
     if user:
         session['user'] = user
-        return redirect(url_for('tasks.profile'))  
+        return redirect(url_for('tasks.view_tasks'))  
     flash('Por favor verifica tus credenciales')
 
     return redirect(url_for('auth.login'))

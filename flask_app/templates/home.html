@@ -23,8 +23,8 @@
                                 Home
                             </a>
                             {% if session['user'] %}
-                            <a href="{{ url_for('tasks.profile') }}" class="navbar-item">
-                                Profile
+                            <a href="{{ url_for('tasks.view_tasks') }}" class="navbar-item">
+                                Tasks
                             </a>
                             {% endif %}
                             {% if not session['user']%}

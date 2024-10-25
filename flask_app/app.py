@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_app.blueprints.auth_blueprint import  auth_bp
-from flask_app.blueprints.task_blueprint import  task_bp
-from flask_app.blueprints.home_blueprint import  home_bp
+from flask_app.blueprints.auth_blueprint.auth_blueprint import  auth_bp
+from flask_app.blueprints.task_blueprint.task_blueprint import  task_bp
+from flask_app.blueprints.home_blueprint.home_blueprint import  home_bp
 
 app = Flask(__name__)
 

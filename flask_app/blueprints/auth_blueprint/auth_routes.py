@@ -1,12 +1,11 @@
-from flask import Blueprint
+from .auth_blueprint import auth_bp
+from flask_app.controllers.auth_controller import (
+     login, 
+     login_render_form, 
+     logout, signup, 
+     signup_render_form,
+)
 
-from flask_app.controllers.auth_controller import login, login_render_form, logout, signup, signup_render_form
-
-
-auth_bp = Blueprint('auth', 
-                    __name__,
-                    template_folder='templates',
-                    static_folder='static')
 
 auth_bp.add_url_rule(
     '/login',

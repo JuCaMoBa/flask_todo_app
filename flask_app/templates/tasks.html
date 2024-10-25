@@ -21,7 +21,7 @@
                         {% endif %}
                         <div>
                           <a class="button is-info js-modal-trigger" data-target="modal-js-example-{{ task['task_id'] }}">Update</a>
-                          <a class="button is-danger" href="/profile/delete_task/{{ task['task_id']  }}">Delete</a>                                                 
+                          <a class="button is-danger" href="{{url_for('tasks.delete_task', task_id=task['task_id'])}}">Delete</a>                                                 
                         </div> 
                       </div>                                                       
                     </div>                                                         
@@ -32,7 +32,7 @@
             <div class="modal-background"></div>          
               <div class="modal-content">
                 <div class="box">
-                  <form action="/profile/update_task/{{ task['task_id'] }}" method="post">
+                  <form action="{{url_for('tasks.update_task', task_id= task['task_id'])}}" method="post">
                     <div class="field">
                       <label class="label">Update Task Description</label>
                       <div class="control">
@@ -64,7 +64,7 @@
     </ul>
 
 <!-- Formulario para agregar una nueva tarea -->
-<form action="/profile"  method="post">
+<form action="{{url_for('tasks.create_task')}}"  method="post">
     <div class="fi mb-1 mt-4">
       <input class="input" type="text" name="task_description" placeholder="Nueva tarea">
     </div>
