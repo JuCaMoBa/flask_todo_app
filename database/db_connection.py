@@ -1,15 +1,14 @@
 import os
 import psycopg2
 import psycopg2.extras
-from dotenv import load_dotenv
 
-load_dotenv()
 
 db_config = {
     'host': os.getenv('DB_HOST'),
     'database': os.getenv('DB_DATABASE'),
     'user': os.getenv('DB_USER'),
     'password': os.getenv('DB_PASSWORD'),
+    'port': os.getenv('PORT_DB')
 }
 class DatabaseConnection():
     def __enter__(self):
